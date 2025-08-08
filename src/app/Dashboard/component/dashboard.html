@@ -1,0 +1,48 @@
+<mat-toolbar color="primary" class="navbar" role="navigation">
+  <!-- Left: Logo -->
+  <span class="logo">🛍️ MyStore</span>
+
+  <!-- Center: Search bar -->
+  <span class="spacer"></span>
+
+  <mat-form-field appearance="outline" class="search-bar" floatLabel="never">
+    <input matInput type="text" [(ngModel)]="searchText" placeholder="Search products...">
+  </mat-form-field>
+
+  <!-- Right: Cart, User, Logout -->
+  <span class="spacer"></span>
+    <!-- Cart Icon with Badge -->
+  <button mat-icon-button [matBadge]="cartCount" matBadgeColor="warn">
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
+  <span class="user">Admin</span>
+  <button mat-button color="warn" (click)="logout()">Logout</button>
+</mat-toolbar>
+
+<!-- Main Content -->
+<div class="main-content">
+  <mat-grid-list cols="3" rowHeight="380px" gutterSize="16px">
+    <mat-grid-tile *ngFor="let product of products$|async | productFilter:searchText; let i = index">
+      <mat-card class="product-card">
+        <img mat-card-image [src]="product.imageUrl" alt="{{ product.name }}" />
+        <mat-card-header>
+          <mat-card-title>{{ product.name | titlecase }}</mat-card-title>
+          <mat-card-subtitle>{{ product.price | currency:'NPR' }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ product.description | slice:0:25 }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+           <button mat-raised-button color="primary" (click)="addProductToCart(product)">
+      Add to Cart
+    </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+<!-- Footer -->
+<mat-toolbar color="primary" class="footer">
+  <span>Email: support@mystore.com | Contact: +977-1234567890</span>
+</mat-toolbar>

@@ -1,0 +1,44 @@
+[
+  {
+    "id":1,
+    "name":"t-shirt",
+    "price": 300,
+    "description":"comfortable cotton t-shirt.A t-shirt is a casual, collarless shirt, typically made of cotton, with short sleeves and a round neckline. It's a versatile and comfortable garment, often worn as everyday wear. T-shirts are usually pulled on over the head and can be plain or decorated with designs or logos. ",
+    "imageUrl":"https://content.mycutegraphics.com/graphics/clothing/red-tshirt.png"
+  },
+
+   {
+    "id": 2,
+    "name": "Mac Laptop",
+    "price": 80000,
+    "description": "Mac laptops, also known as MacBooks, are a line of laptops produced by Apple. They are known for their sleek design, powerful performance, and integration with the Apple ecosystem. The two main models are the MacBook Pro, a high-end, performance-focused laptop, and the MacBook Air, a more portable and affordable option. ",
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAZlsoSJ8UdtZam7x5IIx9VuMWLtpVzhVgjw&s"
+  },
+   {
+    "id": 3,
+    "name": "Haning metal planter",
+    "price": 899,
+    "description": "Decorate Dreams Wall Ceiling Hanging Metal Planter for Plants Indoor Living Room Balcony Patio Garden Home Decoration | Long Chain Included - Set of 2 (Gold)",
+    "imageUrl": "https://m.media-amazon.com/images/I/41uNqNEaAyL._UF894,1000_QL80_.jpg"
+  }, {
+    "id": 4,
+    "name": "Guitar",
+    "price": 4000,
+    "description": "Guitar aesthetic is a combination of visual and auditory qualities that contribute to a guitar's overall appeal. It encompasses the guitar's appearance, including its shape, color, finish, and materials, as well as its sound and playability. Aesthetics can be a significant factor in a guitarist's preference for an instrument, with many prioritizing visual appeal alongside tone and playability. ",
+    "imageUrl": "https://preview.redd.it/purely-from-an-aesthetic-perspective-what-would-you-change-v0-2c9b8alrkusb1.jpg?width=640&crop=smart&auto=webp&s=c587a668d4432e3680bdf2a5c3afad0c23fe38e5"
+  },
+   {
+    "id": 5,
+    "name": "Flower Pot",
+    "price": 500,
+    "description": "Kuber Industries Flower Pot with Plate | 14 Inch Indoor-Outdoor Plants Stand | Flower Pot for Home-Office | Flower Pot for Garden | Flower Gamla for Balcony | Plain Tower | Grey",
+    "imageUrl": "https://m.media-amazon.com/images/I/71ixgGJuqOL.jpg"
+  },
+   {
+    "id": 6,
+    "name": "Notebook",
+    "price": 600,
+    "description": "A book description, also known as a book blurb, is a concise summary designed to entice readers and highlight a book's key selling points. It's a marketing tool, essentially sales copy, that aims to make readers want to learn more, ideally by purchasing the book. It's different from a summary, which simply tells what the book is about; a description focuses on why a reader should care. ",
+    "imageUrl": "https://media.istockphoto.com/id/173015527/photo/a-single-red-book-on-a-white-surface.jpg?s=612x612&w=0&k=20&c=AeKmdZvg2_bRY2Yct7odWhZXav8CgDtLMc_5_pjSItY="
+  }]
+  

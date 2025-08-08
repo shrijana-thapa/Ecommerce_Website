@@ -4,13 +4,36 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 
+
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { CheckoutComponent } from './checkoutComponent/components/checkout.component/checkout.component';
+import { ProductFilterPipe } from './pipes/product-filter-pipe';
+import { HttpClientModule } from '@angular/common/http';
+
+
+
+
+
 @NgModule({
   declarations: [
-    App
+    App,
+    CheckoutComponent,
+    ProductFilterPipe
+
   ],
-  imports: [
+  imports: [ 
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    HttpClientModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners()
