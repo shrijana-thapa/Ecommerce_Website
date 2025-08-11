@@ -17,7 +17,10 @@
     <mat-icon>shopping_cart</mat-icon>
   </button>
 
-  <span class="user">Admin</span>
+   <button mat-button color="accent" [routerLink]="'/admin'">
+  Admin
+</button>
+
   <button mat-button color="warn" (click)="logout()">Logout</button>
 </mat-toolbar>
 

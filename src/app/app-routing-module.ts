@@ -21,7 +21,7 @@ const routes: Routes = [
     path:'signup',
   loadChildren: ()=> import("./signup/signup-module").then((m)=>m.SignupModule)
  },
-  { path: 'Checkout', loadChildren: () => import('./checkoutComponent/checkout/checkout-module').then(m => m.CheckoutModule)},
+  { path: 'admin', loadChildren: () => import('./admin.component/admin/admin-module').then(m => m.AdminModule)},
 
 
  //wild Card routing

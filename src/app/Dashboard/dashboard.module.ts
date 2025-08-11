@@ -24,6 +24,7 @@ import { AddToCartHighlight } from '../add-to-cart-highlight';
 
 
 
+
 @NgModule({
   declarations: [
     Dashboard,
