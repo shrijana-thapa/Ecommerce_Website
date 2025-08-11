@@ -28,23 +28,26 @@ ngOnInit() {
   this.products$ = this.productService.getProducts().pipe(
     map(products => products || []) // <-- guarantees a non-null array
   );
+    
+   // Subscribe once here to cart count observable
+  this.cartService.cartCount$.subscribe(count => {
+    this.cartCounts = count;
+  });
+
 }
 
 addProductToCart(product:any){
   this.cartService.addToCart(product);
-    this.cartService.cartCount$.subscribe(count =>{
-    this.cartCounts=count;
-  })
+
+  }
   
-}
 
 
-
-  
 logout():void{
 this.formService.logout();
 this.router.navigate(['/login']);
 }
 
-}
 
+
+}

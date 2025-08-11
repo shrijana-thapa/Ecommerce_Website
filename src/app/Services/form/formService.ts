@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormService {
 private readonly userKey='user';
+constructor(private router:Router){}
 //save to localstorage
 saveUserData(userDetails:any):void{
      localStorage.setItem(this.userKey, JSON.stringify(userDetails));
@@ -15,7 +17,7 @@ getUserData(){
    return userData ? JSON.parse(userData): null;
 }
 logout(){
-  localStorage.removeItem(this.userKey);
+  this.router.navigate(['/login']);
 }
   
 }
