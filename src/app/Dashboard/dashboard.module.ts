@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { DashboardRoutingModule } from './dashboard.routing.module';
 import { Dashboard } from './component/dashboard';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -16,6 +16,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { ProductFilterPipe } from '../pipes/product-filter-pipe';
 
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatBadgeModule } from '@angular/material/badge';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 
 @NgModule({
@@ -24,16 +30,21 @@ import { ProductFilterPipe } from '../pipes/product-filter-pipe';
     ProductFilterPipe
   ],
   imports: [
+    HttpClientModule,
     FormsModule,
      MatListModule,
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
     CommonModule,
-    DashboardRoutingModule,RouterLink,   
+    DashboardRoutingModule,RouterModule,   
      MatGridListModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+MatInputModule,
+MatBadgeModule
+
   ]
 
 

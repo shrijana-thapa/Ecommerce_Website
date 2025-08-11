@@ -18,14 +18,15 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 
+
 @NgModule({
   declarations: [
     App,
-    CheckoutComponent,
-    ProductFilterPipe
+    CheckoutComponent
 
   ],
   imports: [ 
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     MatToolbarModule,
@@ -33,7 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    HttpClientModule
+
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

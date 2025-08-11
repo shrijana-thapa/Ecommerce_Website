@@ -22,6 +22,8 @@ const routes: Routes = [
   loadChildren: ()=> import("./signup/signup-module").then((m)=>m.SignupModule)
  },
   { path: 'Checkout', loadChildren: () => import('./checkoutComponent/checkout/checkout-module').then(m => m.CheckoutModule)},
+
+
  //wild Card routing
    { path: '**', redirectTo: 'login' }
 

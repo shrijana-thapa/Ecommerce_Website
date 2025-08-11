@@ -5,16 +5,18 @@
   <!-- Center: Search bar -->
   <span class="spacer"></span>
 
-  <mat-form-field appearance="outline" class="search-bar" floatLabel="never">
+  <mat-form-field appearance="outline" class="search-bar" floatLabel="always">
     <input matInput type="text" [(ngModel)]="searchText" placeholder="Search products...">
   </mat-form-field>
 
   <!-- Right: Cart, User, Logout -->
   <span class="spacer"></span>
-    <!-- Cart Icon with Badge -->
-  <button mat-icon-button [matBadge]="cartCount" matBadgeColor="warn">
+
+  <!-- Cart Icon with Badge -->
+  <button mat-icon-button [matBadge]="cartCounts" matBadgeColor="warn">
     <mat-icon>shopping_cart</mat-icon>
   </button>
+
   <span class="user">Admin</span>
   <button mat-button color="warn" (click)="logout()">Logout</button>
 </mat-toolbar>
@@ -22,7 +24,7 @@
 <!-- Main Content -->
 <div class="main-content">
   <mat-grid-list cols="3" rowHeight="380px" gutterSize="16px">
-    <mat-grid-tile *ngFor="let product of products$|async | productFilter:searchText; let i = index">
+    <mat-grid-tile *ngFor="let product of ((products$|async) || []) | productFilter:searchText; let i = index">
       <mat-card class="product-card">
         <img mat-card-image [src]="product.imageUrl" alt="{{ product.name }}" />
         <mat-card-header>
