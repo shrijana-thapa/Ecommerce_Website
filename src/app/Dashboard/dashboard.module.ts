@@ -20,14 +20,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatBadgeModule } from '@angular/material/badge';
 import { HttpClientModule } from '@angular/common/http';
-
+import { AddToCartHighlight } from '../add-to-cart-highlight';
 
 
 
 @NgModule({
   declarations: [
     Dashboard,
-    ProductFilterPipe
+    ProductFilterPipe,
+    AddToCartHighlight
   ],
   imports: [
     HttpClientModule,

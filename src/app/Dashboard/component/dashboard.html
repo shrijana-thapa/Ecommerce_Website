@@ -25,7 +25,7 @@
 <div class="main-content">
   <mat-grid-list cols="3" rowHeight="380px" gutterSize="16px">
     <mat-grid-tile *ngFor="let product of ((products$|async) || []) | productFilter:searchText; let i = index">
-      <mat-card class="product-card">
+      <mat-card class="product-card"   appAddToCartHighlight hoverScale="1.05" hoverColor="#4caf50">
         <img mat-card-image [src]="product.imageUrl" alt="{{ product.name }}" />
         <mat-card-header>
           <mat-card-title>{{ product.name | titlecase }}</mat-card-title>
@@ -35,7 +35,7 @@
           <p>{{ product.description | slice:0:25 }}</p>
         </mat-card-content>
         <mat-card-actions>
-           <button mat-raised-button color="primary" (click)="addProductToCart(product)">
+           <button mat-raised-button color="primary"    appAddToCartHighlight hoverScale="1.1" hoverColor="#f44336"   (click)="addProductToCart(product)">
       Add to Cart
     </button>
         </mat-card-actions>
