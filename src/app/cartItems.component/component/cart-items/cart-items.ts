@@ -26,6 +26,8 @@ export class CartItems implements OnInit{
   }
   removeCart(Name:string){
 this.cartService.removeFromCart(Name);
+  // Update the local array immediately so the UI updates
+  this.cartItems = this.cartItems.filter((item: any) => item.name !== Name);
   }
    
   }

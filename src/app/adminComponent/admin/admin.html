@@ -1,0 +1,34 @@
+
+<div class="admin-container">
+  <h2>🛒 Cart Items (Admin)</h2>
+
+  <table class="cart-table">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartItems">
+        <td>
+          <img [src]="item.imageUrl" alt="{{item.name}}" class="cart-image" />
+        </td>
+        <td>{{ item.name | titlecase }}</td>
+        <td>{{ item.price |currency:'NPR' }}</td>
+        <td>
+          <button class="btn-update" (click)="updatePrice(item)">Update</button>
+          <button class="btn-delete" (click)="removeCart(item.name)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="cartItems.length === 0" class="empty-cart">
+    No items in the cart.
+  </div>
+</div>

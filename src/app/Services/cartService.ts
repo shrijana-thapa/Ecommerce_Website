@@ -10,10 +10,13 @@ export class CartService {
   private cartItems:any[]=[];
   private cartCount= new BehaviorSubject <number> (0);
    cartCount$=this.cartCount.asObservable();
+    // for delete cart items 
+     private cartItemsSubject = new BehaviorSubject<any[]>([]);
+  cartItems$ = this.cartItemsSubject.asObservable();
 
      constructor(private formService: FormService) {
     //Load cart from localStorage when service starts
-    const savedCart = this.formService.getUserData();
+    const savedCart = this.formService.getCartData();
     if (savedCart) {
       if (Array.isArray(savedCart)) {
         this.cartItems = savedCart;
@@ -22,6 +25,7 @@ export class CartService {
       } else {
         this.cartItems = [];
       }
+        this.cartItemsSubject.next(this.cartItems);
         this.cartCount.next(this.cartItems.length);
 
       }
@@ -57,8 +61,15 @@ export class CartService {
 
   // Sync with localStorage & update count
   private updateStorage() {
-    this.formService.saveUserData(this.cartItems);
+    this.formService.saveCartData(this.cartItems);
+    //notify subscribers
+     this.cartItemsSubject.next(this.cartItems); 
     this.cartCount.next(this.cartItems.length);
   }
 
+ 
+
 }
+
+
+
