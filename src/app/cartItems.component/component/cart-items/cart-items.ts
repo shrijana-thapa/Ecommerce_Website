@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../../Services/cartService';
-import { FormService } from '../../../Services/form/formService';
 
 
 @Component({
@@ -12,8 +11,7 @@ import { FormService } from '../../../Services/form/formService';
 export class CartItems implements OnInit{
   
    cartItems:any;
-   cartItemsArray:any;
-    constructor(private cartService:CartService,private formService:FormService){
+    constructor(private cartService:CartService){
     
     }
   ngOnInit(): void {
@@ -26,8 +24,10 @@ export class CartItems implements OnInit{
   }
   removeCart(Name:string){
 this.cartService.removeFromCart(Name);
-  // Update the local array immediately so the UI updates
-  this.cartItems = this.cartItems.filter((item: any) => item.name !== Name);
+  // Update cart items
+this.cartService.cartItems$.subscribe(item=>{
+ this.cartItems= item
+});
   }
    
   }

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { product } from '../Services/productSevice/productService';
+import { Product } from '../Services/productSevice/productService';
 
 @Pipe({
   name: 'productFilter',
@@ -7,7 +7,7 @@ import { product } from '../Services/productSevice/productService';
 })
 export class ProductFilterPipe implements PipeTransform {
 
-  transform(products:product[],searchText:string): product[]{
+  transform(products:Product[],searchText:string): Product[]{
 
   if(!products || !searchText){
     return products;

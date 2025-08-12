@@ -1,34 +1,56 @@
+<mat-toolbar color="primary" class="navbar" role="navigation">
+  <!-- Left: Logo -->
+  <span class="logo">🛍️ MyStore</span>
 
-<div class="admin-container">
-  <h2>🛒 Cart Items (Admin)</h2>
+  <!-- Center: Search bar -->
+  <span class="spacer"></span>
 
-  <table class="cart-table">
-    <thead>
-      <tr>
-        <th>Image</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Total</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of cartItems">
-        <td>
-          <img [src]="item.imageUrl" alt="{{item.name}}" class="cart-image" />
-        </td>
-        <td>{{ item.name | titlecase }}</td>
-        <td>{{ item.price |currency:'NPR' }}</td>
-        <td>
-          <button class="btn-update" (click)="updatePrice(item)">Update</button>
-          <button class="btn-delete" (click)="removeCart(item.name)">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <mat-form-field appearance="outline" class="search-bar" floatLabel="always">
+    <input matInput type="text" [(ngModel)]="searchText" placeholder="Search products...">
+  </mat-form-field>
 
-  <div *ngIf="cartItems.length === 0" class="empty-cart">
-    No items in the cart.
-  </div>
+  <!-- Right: Cart, User, Logout -->
+  <span class="spacer"></span>
+
+  <!-- Cart Icon with Badge -->
+  <button mat-icon-button [matBadge]="cartCounts" matBadgeColor="warn" [routerLink]="'/cartItems'">
+    <mat-icon>shopping_cart</mat-icon>
+  </button>
+
+   <button mat-button color="accent" [routerLink]="'/admin'" >
+  Admin
+</button>
+
+  <button mat-button color="warn" (click)="logout()">Logout</button>
+</mat-toolbar>
+
+<!-- Main Content -->
+<div class="main-content">
+  <mat-grid-list cols="3" rowHeight="380px" gutterSize="16px">
+    <mat-grid-tile *ngFor="let product of ((products$|async) || []) | productFilter:searchText; let i = index">
+      <mat-card class="product-card"   appAddToCartHighlight hoverScale="1.05" hoverColor="#4caf50">
+        <img mat-card-image [src]="product.imageUrl" alt="{{ product.name }}" />
+        <mat-card-header>
+          <mat-card-title>{{ product.name | titlecase }}</mat-card-title>
+          <mat-card-subtitle>{{ product.price | currency:'NPR' }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ product.description | slice:0:25 }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+           <button mat-raised-button color="primary"    appAddToCartHighlight hoverScale="1.1" hoverColor="#f44336"   (click)="deleteProduct(product.id)">
+      Delete
+    </button>
+      <button mat-raised-button color="primary"    appAddToCartHighlight hoverScale="1.1" hoverColor="#f44336"   [routerLink]="'./update'">
+      Update
+    </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
+
+<!-- Footer -->
+<mat-toolbar color="primary" class="footer">
+  <span>Email: support@mystore.com | Contact: +977-1234567890</span>
+</mat-toolbar>

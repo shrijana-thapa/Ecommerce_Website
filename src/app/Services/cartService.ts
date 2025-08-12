@@ -7,6 +7,7 @@ import { FormService } from './form/formService';
   providedIn: 'root'
 })
 export class CartService {
+
   private cartItems:any[]=[];
   private cartCount= new BehaviorSubject <number> (0);
    cartCount$=this.cartCount.asObservable();
@@ -50,13 +51,18 @@ export class CartService {
     this.cartItems = this.cartItems.filter(item => item.name !== productName);
     this.updateStorage();
 
-
   }
+  updateCartPrice(id:number,newPrice:number){
+    console.log(name,newPrice);
+    console.log(this.cartItems)
 
-  //  Clear cart
-  clearCart() {
-    this.cartItems = [];
+    const index=this.cartItems.findIndex(item=>{
+      item.id===id;
+    })
+    console.log(index)
+    this.cartItems[index].price=newPrice;
     this.updateStorage();
+
   }
 
   // Sync with localStorage & update count

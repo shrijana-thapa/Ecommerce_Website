@@ -48,8 +48,10 @@ import { AddToCartHighlight } from '../add-to-cart-highlight';
 MatInputModule,
 MatBadgeModule
 
-  ]
-
+  ],
+exports:[
+  ProductFilterPipe
+]
 
 })
 export class DashboardModule { }

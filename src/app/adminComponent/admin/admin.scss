@@ -1,51 +1,51 @@
-.admin-container {
-  max-width: 900px;
-  margin: auto;
-  padding: 20px;
+.app-container {
+  height: 100vh;
 }
 
-.cart-table {
-  width: 100%;
-  border-collapse: collapse;
+
+.product-card img {
+  height:120px;
+}
+.product-card{
+  border: 1px solid rgb(221, 213, 213);
+  
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  margin-bottom:20px;
+  border:1px solid gray;
+
+}
+.spacer{
+  position :relative;
+
+}
+.logo {
+  font-size: 20px;
+  font-weight: bold;
   margin-top: 20px;
-
-  th, td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: center;
-  }
-
-  th {
-    background-color: #f4f4f4;
-  }
 }
 
-.cart-image {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
+.spacer {
+  flex: 1 1 auto;
+}
+.user {
+  margin-left: 16px;
+  font-weight: 500;
 }
 
-.btn-update {
-  background-color: #4caf50;
-  color: white;
-  padding: 5px 12px;
-  border: none;
-  cursor: pointer;
-  margin-right: 5px;
-}
 
-.btn-delete {
-  background-color: #f44336;
-  color: white;
-  padding: 5px 12px;
-  border: none;
-  cursor: pointer;
-}
 
-.empty-cart {
-  text-align: center;
+.content {
   padding: 20px;
-  font-size: 18px;
-  color: gray;
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  justify-content: center;
 }

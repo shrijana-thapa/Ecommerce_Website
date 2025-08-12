@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
+import { ProductService } from './Services/productSevice/productService';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,12 @@ import { Component, signal } from '@angular/core';
 })
 export class App {
   protected readonly title = signal('ecommerce');
+  constructor(private productService:ProductService){
+  
+    this.productService.uploadProductsDataToLocalStorage().subscribe();
+
+ 
+}
+
+
 }
