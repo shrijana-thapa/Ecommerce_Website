@@ -8,6 +8,7 @@
         <th>Name</th>
         <th>Price</th>
         <th>Quantity</th>
+        <th>Actions</th> 
       </tr>
     </thead>
     <tbody>
@@ -16,6 +17,10 @@
         <td>{{ item.name }}</td>
         <td>{{ item.price | currency }}</td>
         <td>{{ item.quantity }}</td>
+                <td>
+          <button (click)="removeCart(item.name)">Delete</button>
+        </td>
+
       </tr>
     </tbody>
   </table>

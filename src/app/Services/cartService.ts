@@ -15,17 +15,26 @@ export class CartService {
     //Load cart from localStorage when service starts
     const savedCart = this.formService.getUserData();
     if (savedCart) {
-      this.cartItems = savedCart;
-      this.cartCount.next(this.cartItems.length);
-    }
+      if (Array.isArray(savedCart)) {
+        this.cartItems = savedCart;
+      } else if (typeof savedCart === 'object') {
+        this.cartItems = Object.values(savedCart);
+      } else {
+        this.cartItems = [];
+      }
+        this.cartCount.next(this.cartItems.length);
+
+      }
   }
  
   
   // Add to cart
   addToCart(product: any) {
-    this.cartItems.push(product);
+  
+   this.cartItems.push(product);
     this.updateStorage();
   }
+  
 
   //  Get cart items
   getCartItems() {
@@ -36,6 +45,8 @@ export class CartService {
   removeFromCart(productName: string) {
     this.cartItems = this.cartItems.filter(item => item.name !== productName);
     this.updateStorage();
+
+
   }
 
   //  Clear cart

@@ -12,12 +12,20 @@ import { FormService } from '../../../Services/form/formService';
 export class CartItems implements OnInit{
   
    cartItems:any;
+   cartItemsArray:any;
     constructor(private cartService:CartService,private formService:FormService){
     
     }
   ngOnInit(): void {
-  this.cartItems=this.cartService.getCartItems();
   
+  this.cartItems=this.cartService.getCartItems();
+ 
+   
+  
+  
+  }
+  removeCart(Name:string){
+this.cartService.removeFromCart(Name);
   }
    
   }
