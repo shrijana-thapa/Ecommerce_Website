@@ -36,10 +36,21 @@ const updatedProduct= products.filter(item=>{
   localStorage.setItem( this.localStorageKey ,JSON.stringify(updatedProduct));
 
 }
-  updateLocalStorageProduct(product:any){
-    
-
+  updateLocalStorageProduct(product:Product){
+    const localVlaue=this.getLocalProduct();
+    const index=localVlaue.findIndex(item=>{
+      return item.id==product.id
+    })
+    if(index !== -1){
+      localVlaue[index]=product;
+      localStorage.setItem(this.localStorageKey,JSON.stringify(localVlaue));
+    }
   }
+
+  getProductById(id: number) {
+  const products = this.getLocalProduct();
+  return products.find((p: any) => p.id === id);
+}
 
   
 

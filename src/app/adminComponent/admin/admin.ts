@@ -41,10 +41,14 @@ deleteProduct(product_id: number) {
   this.loadProduct();
 }
 
-updateProduct(product:Product){
-  
+navigateToupdate(product: Product){
+  this.router.navigate(['update',product.id]);
 
 }
+// updateProduct(product:Product){
+//   console.log(product.id);
+
+
 logout():void{
 this.formService.logout();
 this.router.navigate(['/login']);

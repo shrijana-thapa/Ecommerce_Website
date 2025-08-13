@@ -25,6 +25,7 @@ const routes: Routes = [
     { path: 'cartItems', loadChildren: () => import('./cartItems.component/cart-items/cart-items-module').then(m => m.CartItemsModule)},
 
      { path: 'admin', loadChildren: () => import('./adminComponent/admin/admin-module').then(m => m.AdminModule)},
+         { path: 'update', loadChildren: () => import('./updateComponent/update/update-module').then(m => m.UpdateModule)},
 
  //wild Card routing
    { path: '**', redirectTo: 'login' }

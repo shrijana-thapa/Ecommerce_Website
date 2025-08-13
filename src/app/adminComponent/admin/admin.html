@@ -41,7 +41,7 @@
            <button mat-raised-button color="primary"    appAddToCartHighlight hoverScale="1.1" hoverColor="#f44336"   (click)="deleteProduct(product.id)">
       Delete
     </button>
-      <button mat-raised-button color="primary"    appAddToCartHighlight hoverScale="1.1" hoverColor="#f44336"   [routerLink]="'./update'">
+      <button mat-raised-button color="primary"    appAddToCartHighlight hoverScale="1.1" hoverColor="#f44336" (click) = "navigateToupdate(product)" >
       Update
     </button>
         </mat-card-actions>
