@@ -1,7 +1,6 @@
 <mat-toolbar color="primary" class="navbar" role="navigation">
   <!-- Left: Logo -->
-  <span class="logo">🛍️ MyStore</span>
-
+  <span class="logo">Admin Pannel</span>
   <!-- Center: Search bar -->
   <span class="spacer"></span>
 
@@ -12,13 +11,10 @@
   <!-- Right: Cart, User, Logout -->
   <span class="spacer"></span>
 
-  <!-- Cart Icon with Badge -->
-  <button mat-icon-button [matBadge]="cartCounts" matBadgeColor="warn" [routerLink]="'/cartItems'">
-    <mat-icon>shopping_cart</mat-icon>
-  </button>
+  
 
-   <button mat-button color="accent" [routerLink]="'/admin'" >
-  Admin
+   <button mat-button color="accent" [routerLink]="'/dashboard'" >
+  Dashboard
 </button>
 
   <button mat-button color="warn" (click)="logout()">Logout</button>
@@ -38,7 +34,7 @@
           <p>{{ product.description | slice:0:25 }}</p>
         </mat-card-content>
         <mat-card-actions>
-           <button mat-raised-button color="primary"    appAddToCartHighlight hoverScale="1.1" hoverColor="#f44336"   (click)="deleteProduct(product.id)">
+           <button mat-raised-button color="primary"    appAddToCartHighlight hoverScale="1.1" hoverColor="#f44336"   (click)="deleteProduct(product)">
       Delete
     </button>
       <button mat-raised-button color="primary"    appAddToCartHighlight hoverScale="1.1" hoverColor="#f44336" (click) = "navigateToupdate(product)" >

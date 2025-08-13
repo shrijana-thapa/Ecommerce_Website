@@ -4,14 +4,16 @@ import { FormService } from '../../Services/form/formService';
 import { Product, ProductService } from '../../Services/productSevice/productService';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CartService } from '../../Services/cartService';
-import { map } from 'rxjs/operators'
+import {  NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
+
 
 
 @Component({
   selector: 'app-admin',
   standalone: false,
   templateUrl: './admin.html',
-  styleUrl: './admin.scss'
+  styleUrls: ['./admin.scss']
 })
 export class Admin implements OnInit{
  searchText: string = '';
@@ -29,24 +31,21 @@ products:any;
 
 ngOnInit() {
 
-  this.loadProduct();
-  
-}
-loadProduct(){
   this.products$ = this.productService.getProducts();
+     
 }
 
-deleteProduct(product_id: number) {
-  this.productService.deleteProductFromLocalStorage(product_id);
-  this.loadProduct();
+
+deleteProduct(product: Product) {
+  debugger;
+  this.productService.deleteProductFromLocalStorage(product.id);
 }
 
 navigateToupdate(product: Product){
   this.router.navigate(['update',product.id]);
 
 }
-// updateProduct(product:Product){
-//   console.log(product.id);
+
 
 
 logout():void{

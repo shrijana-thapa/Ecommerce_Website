@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Product, ProductService } from '../../Services/productSevice/productService';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +13,7 @@ import { ActivatedRoute, Route } from '@angular/router';
 export class Update implements OnInit {
   productForm !: FormGroup;
   productId !:number;
-  constructor(private fb:FormBuilder,private productService:ProductService,private route:ActivatedRoute){}  
+  constructor(private fb:FormBuilder,private productService:ProductService,private route:ActivatedRoute,private router: Router){}  
  ngOnInit(): void {
    
  this.productForm=this.fb.group(
@@ -45,13 +45,16 @@ export class Update implements OnInit {
   
 
  updateProduct(){
-  debugger;
   if(this.productForm.valid){
-    const productData:Product={
-      ...this.productForm.value,
-     id: this.productId
+    const productData:Product={ 
+     id: this.productId,
+      name: this.productForm.value.productName,
+      price: this.productForm.value.productPrice,
+      description: '', 
+      imageUrl: this.productForm.value.image
     }
     this.productService.updateLocalStorageProduct(productData);
+
  }
   }
 

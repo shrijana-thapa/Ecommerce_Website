@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Product } from '../productSevice/productService';
 
 @Injectable({
   providedIn: 'root'
@@ -20,15 +21,6 @@ getUserData(){
    
 }
 
-// Cart data
-  saveCartData(cartItems: any): void {
-    localStorage.setItem(this.cartKey, JSON.stringify(cartItems));
-  }
-
-  getCartData() {
-    const cartData = localStorage.getItem(this.cartKey);
-    return cartData ? JSON.parse(cartData) : null;
-  }
 
 
 

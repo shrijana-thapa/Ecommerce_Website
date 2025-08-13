@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable,of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 
 export interface Product{
   id:number,
@@ -15,10 +16,15 @@ export interface Product{
   providedIn: 'root'
 })
 export class ProductService {
+
    private productsUrl="/products.json";
      private localStorageKey = 'my_products';
 
-   constructor(private http :HttpClient){}
+     // BehaviorSubject to store products and for instant updates
+    private productsSubject = new BehaviorSubject<Product[]>(this.getLocalProduct());
+    products$ = this.productsSubject.asObservable();
+
+  constructor(private http :HttpClient){}
 
    getLocalProduct():Product[]{
 
@@ -26,7 +32,8 @@ export class ProductService {
   return  parsed ? JSON.parse(parsed) : [] ;
    }
   getProducts(): Observable<Product[]>{
-    return of(this.getLocalProduct());
+    
+    return this.products$;
   }
   deleteProductFromLocalStorage(id:number){
       const products =this.getLocalProduct();
@@ -34,16 +41,20 @@ const updatedProduct= products.filter(item=>{
     return item.id !== id
   });
   localStorage.setItem( this.localStorageKey ,JSON.stringify(updatedProduct));
+   this.productsSubject.next(updatedProduct);
+
 
 }
   updateLocalStorageProduct(product:Product){
-    const localVlaue=this.getLocalProduct();
-    const index=localVlaue.findIndex(item=>{
+    const localValue=this.getLocalProduct();
+    const index=localValue.findIndex(item=>{
       return item.id==product.id
     })
     if(index !== -1){
-      localVlaue[index]=product;
-      localStorage.setItem(this.localStorageKey,JSON.stringify(localVlaue));
+      localValue[index]=product;
+      localStorage.setItem(this.localStorageKey,JSON.stringify(localValue));
+       this.productsSubject.next(localValue); 
+
     }
   }
 
@@ -58,6 +69,7 @@ uploadProductsDataToLocalStorage() {
 return this.http.get<Product[]>(this.productsUrl).pipe(
         tap(products => {
           localStorage.setItem(this.localStorageKey, JSON.stringify(products));
+          this.productsSubject.next(products);
         })
       );
 }

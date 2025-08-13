@@ -41,12 +41,6 @@ loginForm!: FormGroup;
    else{
     alert('Invalid credentials');
    }
-
-
-
-
-
-
   }
   }
 

@@ -39,7 +39,7 @@ ngOnInit() {
 
 }
 
-addProductToCart(product:any){
+addProductToCart(product:Product){
   this.cartService.addToCart(product);
 
   }

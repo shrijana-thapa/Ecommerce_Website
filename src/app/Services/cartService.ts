@@ -1,6 +1,6 @@
-import { Injectable, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
-import { FormService } from './form/formService';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Product } from './productSevice/productService';
 
 
 @Injectable({
@@ -8,16 +8,19 @@ import { FormService } from './form/formService';
 })
 export class CartService {
 
-  private cartItems:any[]=[];
+  private cartItems:Product[]=[];
+  private cartKey='cartkey';
+  // BehaviorSubject to store added  cartItems and for instant updates
+    private cartItemsSubject = new BehaviorSubject<Product[]>(this.getLocalCartItems());
+    cartItems$ = this.cartItemsSubject.asObservable();
+
   private cartCount= new BehaviorSubject <number> (0);
    cartCount$=this.cartCount.asObservable();
-    // for delete cart items 
-     private cartItemsSubject = new BehaviorSubject<any[]>([]);
-  cartItems$ = this.cartItemsSubject.asObservable();
 
-     constructor(private formService: FormService) {
+
+     constructor() {
     //Load cart from localStorage when service starts
-    const savedCart = this.formService.getCartData();
+    const savedCart = this.getLocalCartItems();
     if (savedCart) {
       if (Array.isArray(savedCart)) {
         this.cartItems = savedCart;
@@ -34,44 +37,40 @@ export class CartService {
  
   
   // Add to cart
-  addToCart(product: any) {
-  
+  addToCart(product: Product) {
    this.cartItems.push(product);
-    this.updateStorage();
+    this.saveCartDataToLocalStorage(this.cartItems);
+     this.cartItemsSubject.next(this.cartItems);  // emit new value to all subscriber
+     this.cartCount.next(this.cartItems.length);
+  }
+
+  // save Cart data into localstorage
+  saveCartDataToLocalStorage(cartItems: Product[]): void {
+    localStorage.setItem(this.cartKey, JSON.stringify(cartItems));
   }
   
+  getLocalCartItems():Product[]{
+
+   const parsed= (localStorage.getItem(this.cartKey));
+  return  parsed ? JSON.parse(parsed) : [] ;
+   }
 
   //  Get cart items
-  getCartItems() {
-    return this.cartItems;
+  getCartItems():Observable<Product[]> {
+    return this.cartItems$
   }
 
   // Remove item from cart
-  removeFromCart(productName: string) {
-    this.cartItems = this.cartItems.filter(item => item.name !== productName);
-    this.updateStorage();
+  removeCartItemsFromLocalStorage(id: number) {
 
-  }
-  updateCartPrice(id:number,newPrice:number){
-    console.log(name,newPrice);
-    console.log(this.cartItems)
+  this.cartItems = this.cartItems.filter(item => item.id !== id);  // update internal array
+  this.saveCartDataToLocalStorage(this.cartItems);  // save updated cart to localStorage
+  this.cartItemsSubject.next(this.cartItems);  // notify subscribers
+  this.cartCount.next(this.cartItems.length);  // update count
+}
 
-    const index=this.cartItems.findIndex(item=>{
-      item.id===id;
-    })
-    console.log(index)
-    this.cartItems[index].price=newPrice;
-    this.updateStorage();
 
-  }
 
-  // Sync with localStorage & update count
-  private updateStorage() {
-    this.formService.saveCartData(this.cartItems);
-    //notify subscribers
-     this.cartItemsSubject.next(this.cartItems); 
-    this.cartCount.next(this.cartItems.length);
-  }
 
  
 
